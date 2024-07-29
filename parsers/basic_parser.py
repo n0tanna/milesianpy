@@ -37,7 +37,7 @@ class BasicParser:
             else:
                 left_value = ''
 
-        return True
+        return False
 
     @staticmethod
     def check_double_operators(user_input: list, passed_valid_operators: list = None):
@@ -53,7 +53,7 @@ class BasicParser:
             else:
                 previous_value = x
 
-        return True
+        return False
 
     @staticmethod
     def check_decimals(user_input: list):

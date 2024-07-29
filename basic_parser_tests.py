@@ -113,14 +113,14 @@ def test_check_double_operator_positive_1():
     basic_parser_class = basic_parser.BasicParser()
     equation = list("1.2+5")
     response = basic_parser_class.check_double_operators(equation)
-    assert response is True
+    assert response is False
 
 
 def test_check_double_operator_positive_2():
     basic_parser_class = basic_parser.BasicParser()
     equation = list("(1.2/665)")
     response = basic_parser_class.check_double_operators(equation)
-    assert response is True
+    assert response is False
 
 
 # check_double_operator - negative tests

@@ -27,23 +27,20 @@ def test_convert_to_nums_positive_3():
 # is_negative - positive tests
 def test_is_negative_positive_1():
     number_parser_class = number_parser.NumberParser()
-    equation = list("(4.23+(-234))")
-    equation = number_parser_class.convert_to_nums(equation)
+    equation = ['(', 4.23, '+', '(', '-', 234.0, ')', ')']
     response = number_parser_class.is_negative(equation)
     assert ['(', 4.23, '+', '(', -234.0, ')', ')'] == response
 
 
 def test_is_negative_positive_2():
     number_parser_class = number_parser.NumberParser()
-    equation = list("5-(-8)")
-    equation = number_parser_class.convert_to_nums(equation)
+    equation = [5.0, '-', '(', '-', 8.0, ')']
     response = number_parser_class.is_negative(equation)
-    assert [5, '-', '(', -8.0, ')'] == response
+    assert [5.0, '-', '(', -8.0, ')'] == response
 
 
 def test_is_negative_positive_3():
     number_parser_class = number_parser.NumberParser()
-    equation = list("5-((-8)-(-232))")
-    equation = number_parser_class.convert_to_nums(equation)
+    equation = [5, '-', '(', '(', '-', 8.0, ')', '-', '(', '-', 232.0, ')', ')']
     response = number_parser_class.is_negative(equation)
-    assert [5, '-', '(', '(', -8.0, ')', '-', '(', -232, ')', ')'] == response
+    assert [5, '-', '(', '(', -8.0, ')', '-', '(', -232.0, ')', ')'] == response
