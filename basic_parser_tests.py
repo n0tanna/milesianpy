@@ -1,9 +1,33 @@
 import pytest
+import json
 from parsers import basic_parser
 
 
+@pytest.fixture
+def setup_data():
+    json_file = open('tests/test_data/basic_parser_testing_data.json')
+    json_data = json.load(json_file)
+    print(json_data)
+    yield json_data
+    json_file.close()
+
+
+def test_example(setup_data):
+    basic_parser_class = basic_parser.BasicParser()
+    for x in setup_data['check_values']:
+        equation = x['test_data']
+        if x['test_result']['exception'] is False:
+            response = basic_parser_class.check_values(equation)
+            assert response == x['test_result']['result']
+
+        elif x['test_result']['exception'] is True:
+            with pytest.raises(Exception) as error:
+                basic_parser_class.check_values(equation)
+            assert str(error.value) == x['test_result']['result']
+
+
 # check_values - positive tests
-def test_check_values_positive_1():
+def test_check_values_positive_1(setup_data):
     basic_parser_class = basic_parser.BasicParser()
     equation = list("4.23+234")
     response = basic_parser_class.check_values(equation)

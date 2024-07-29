@@ -17,7 +17,7 @@ class BasicParser:
             right_bracket_count += user_input.count(x)
 
         if right_bracket_count != left_bracket_count:
-            raise Exception("Formatting Error: no closing bracket")
+            raise Exception("Formatting Error: no closing bracket.")
 
         if left_bracket_count > 0:
             return True
@@ -32,7 +32,7 @@ class BasicParser:
                 left_value = x
 
             elif x in right_bracket and left_value:
-                raise Exception("Formatting Error: no content in bracket")
+                raise Exception("Formatting Error: no content in bracket.")
 
             else:
                 left_value = ''
@@ -48,7 +48,7 @@ class BasicParser:
 
         for x in user_input:
             if previous_value is x in passed_valid_operators:
-                raise Exception("Formatting Error: " + previous_value + " cannot be beside " + x)
+                raise Exception("Formatting Error: " + previous_value + " cannot be beside " + x + ".")
 
             else:
                 previous_value = x
@@ -85,7 +85,7 @@ class BasicParser:
 
         for x in user_input:
             if x not in passed_valid_characters and not x.isalnum():
-                raise Exception("Invalid character: " + x + ".")
+                raise Exception("Formatting Error: Invalid character: " + x + ".")
 
         return True
 
