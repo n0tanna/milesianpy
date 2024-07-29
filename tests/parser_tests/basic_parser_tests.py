@@ -5,7 +5,7 @@ from parsers import basic_parser
 
 @pytest.fixture
 def setup_data():
-    json_file = open('tests/test_data/basic_parser_testing_data.json')
+    json_file = open('../test_data/basic_parser_testing_data.json')
     json_data = json.load(json_file)
     print(json_data)
     yield json_data
