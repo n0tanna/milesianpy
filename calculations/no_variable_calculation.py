@@ -6,7 +6,7 @@ left_bracket_values = ['{', '[', '(']
 valid_operators = ['-', '+', '/', '*', '^']
 
 
-class CalculationParser:
+class NoVariableCalculation:
     @staticmethod
     def no_variable_basic_calculation(user_input: list):
         number_class = number_parser.NumberParser()
@@ -21,18 +21,18 @@ class CalculationParser:
             user_input = number_class.convert_to_nums(user_input)
 
             right_bracket_index = user_input.index(')')
-            left_bracket_index = CalculationParser.final_instance(user_input, '(')
+            left_bracket_index = NoVariableCalculation.final_instance(user_input, '(')
 
             if right_bracket_index < left_bracket_index:
-                response = CalculationParser.multiple_nested_brackets(user_input)
+                response = NoVariableCalculation.multiple_nested_brackets(user_input)
 
             else:
-                response = CalculationParser.singular_nested_brackets(user_input)
-                response = CalculationParser.calculate_values(user_input)
+                response = NoVariableCalculation.singular_nested_brackets(user_input)
+                response = NoVariableCalculation.calculate_values(user_input)
 
         else:
             user_input = number_class.convert_to_nums(user_input)
-            response = CalculationParser.calculate_values(user_input)
+            response = NoVariableCalculation.calculate_values(user_input)
 
         return response
 
@@ -44,15 +44,15 @@ class CalculationParser:
             right_bracket_index = user_input.index(')')
 
             spliced_list = user_input[:right_bracket_index + 1]
-            left_bracket_index = CalculationParser.final_instance(spliced_list, '(')
+            left_bracket_index = NoVariableCalculation.final_instance(spliced_list, '(')
             spliced_list = spliced_list[left_bracket_index:]
 
-            calculated_value = CalculationParser.singular_nested_brackets(spliced_list)
+            calculated_value = NoVariableCalculation.singular_nested_brackets(spliced_list)
             user_input[right_bracket_index] = calculated_value
             del user_input[left_bracket_index: right_bracket_index]
             left_bracket_count = user_input.count('(')
 
-        user_input = CalculationParser.calculate_values(user_input)
+        user_input = NoVariableCalculation.calculate_values(user_input)
         return user_input
 
     @classmethod
@@ -61,13 +61,13 @@ class CalculationParser:
         calculated_value = 0
 
         while left_bracket_count > 0:
-            holder = CalculationParser.bracket_recursion(user_input)
+            holder = NoVariableCalculation.bracket_recursion(user_input)
             left_bracket_count_holder = holder.count('(')
 
             if left_bracket_count_holder == 0:
-                calculated_value = CalculationParser.calculate_values(holder)
+                calculated_value = NoVariableCalculation.calculate_values(holder)
 
-                left_value = CalculationParser.final_instance(user_input, '(')
+                left_value = NoVariableCalculation.final_instance(user_input, '(')
 
                 right_value = user_input.index(')')
 
@@ -110,7 +110,7 @@ class CalculationParser:
 
     @classmethod
     def bracket_recursion(cls, user_input: list):
-        index = CalculationParser.final_instance(user_input, '(')
+        index = NoVariableCalculation.final_instance(user_input, '(')
         left_bracket_index = index
         right_bracket_index = user_input.index(')')
 

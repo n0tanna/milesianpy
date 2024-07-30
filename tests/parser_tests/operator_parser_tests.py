@@ -8,7 +8,7 @@ operator_parser_class = operator_parser.OperatorParser()
 
 @pytest.fixture
 def setup_data():
-    json_file = open('../test_data/operator_parser_testing_data.json')
+    json_file = open('../test_data/parsing_data/operator_parser_testing_data.json')
     json_data = json.load(json_file)
     yield json_data
     json_file.close()

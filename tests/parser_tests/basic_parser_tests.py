@@ -8,7 +8,7 @@ basic_parser_class = basic_parser.BasicParser()
 
 @pytest.fixture
 def setup_data():
-    json_file = open('../test_data/basic_parser_testing_data.json')
+    json_file = open('../test_data/parsing_data/basic_parser_testing_data.json')
     json_data = json.load(json_file)
     yield json_data
     json_file.close()

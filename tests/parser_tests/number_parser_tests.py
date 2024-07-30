@@ -8,7 +8,7 @@ number_parser_class = number_parser.NumberParser()
 
 @pytest.fixture
 def setup_data():
-    json_file = open('../test_data/number_parser_testing_data.json')
+    json_file = open('../test_data/parsing_data/number_parser_testing_data.json')
     json_data = json.load(json_file)
     yield json_data
     json_file.close()
