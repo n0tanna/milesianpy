@@ -2,76 +2,231 @@
   "check_bracket_count": [
     {
       "test_data": "(12+34)+(1+3)",
-      "test_result": "True"
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
     },
     {
       "test_data": "{12+34}+(1+3)",
-      "test_result": "True"
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
     },
     {
       "test_data": "[12+34]+(1+3)",
-      "test_result": "True"
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
     },
     {
       "test_data": "[{(12+34)+(1+3)}]",
-      "test_result": "True"
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
     },
     {
       "test_data": "[{(12+34)+(1+3)}]+{3434-3}",
-      "test_result": "True"
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
     },
     {
       "test_data": "12+3",
-      "test_result": "False"
+      "test_result": {
+        "exception": false,
+        "result": false
+      }
+    },
+    {
+      "test_data": "(12+3",
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: no closing bracket."
+      }
     }
   ],
 
   "check_if_empty_bracket": [
     {
       "test_data": "(12+34)+(1+3)",
-      "test_result": "False"
+      "test_result": {
+        "exception": false,
+        "result": false
+      }
     },
     {
       "test_data": "12+3",
-      "test_result": "False"
+      "test_result": {
+        "exception": false,
+        "result": false
+      }
     },
     {
       "test_data": "(12+34)+()",
-      "test_result": "Exception"
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: no content in bracket."
+      }
     },
     {
       "test_data": "()+(5+3)",
-      "test_result": "Exception"
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: no content in bracket."
+      }
     },
     {
       "test_data": "((12+34)+(432432-54353))+()",
-      "test_result": "Exception"
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: no content in bracket."
+      }
     },
     {
       "test_data": "()+(5+3)",
-      "test_result": "Exception"
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: no content in bracket."
+      }
     }
   ],
   "check_double_operators": [
     {
       "test_data": "(12+34)+(1+3)",
-      "test_result": "False"
+      "test_result": {
+        "exception": false,
+        "result": false
+      }
     },
     {
       "test_data": "12+3",
-      "test_result": "False"
+      "test_result": {
+        "exception": false,
+        "result": false
+      }
     },
     {
       "test_data": "12+3+{23/4}",
-      "test_result": "False"
+      "test_result": {
+        "exception": false,
+        "result": false
+      }
     },
     {
       "test_data": "12+3+{23//4}",
-      "test_result": "Exception"
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: / cannot be beside /."
+      }
     },
     {
       "test_data": "(98^^34)+6547",
-      "test_result": "Exception"
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: ^ cannot be beside ^."
+      }
+    }
+  ],
+  "check_decimals": [
+    {
+      "test_data": "4.2+7.89",
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
+    },
+    {
+      "test_data": "(6.7432-(-3.4545))+(2.3+1.5436346436436)",
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
+    },
+    {
+      "test_data": "..4+3",
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: decimals require numbers on both sides."
+      }
+    },
+    {
+      "test_data": "4..1+(9.34/4)",
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: too many decimals for one number."
+      }
+    },
+    {
+      "test_data": "(.34)+6547",
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: decimals require numbers on both sides."
+      }
+    },
+    {
+      "test_data": "(12414431.34)+6547.",
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: decimals require numbers on both sides."
+      }
+    }
+  ],
+  "check_values": [
+    {
+      "test_data": "34+23/4",
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
+    },
+    {
+      "test_data": "(64^343)-6785.34",
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
+    },
+    {
+      "test_data": "[24324.324*2]+(32.23)/2",
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
+    },
+    {
+      "test_data": "[24324.324*2]+{(32.23)}/2}",
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
+    },
+    {
+      "test_data": "[24324.324*2]+{(32.23)}/2}",
+      "test_result": {
+        "exception": false,
+        "result": true
+      }
+    },
+    {
+      "test_data": "[24324.324*2@@@#$%]+{(32.23)}/2}",
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: Invalid character: @."
+      }
+    }
+  ],
+  "standardize_brackets": [
+    {
+      "test_data": ["{", "24324.324", "*", "2", "}", "+", "[", "(", "32.23", ")", "]", "/", "2"],
+      "test_result": {
+        "exception": false,
+        "result": ["(", "24324.324", "*", "2", ")", "+", "(", "(", "32.23", ")", ")", "/", "2"]
+      }
     }
   ]
 }
