@@ -1,67 +1,35 @@
 import pytest
+import json
 from parsers import operator_parser
+from tests import test_runner
+
+operator_parser_class = operator_parser.OperatorParser()
 
 
-# addition - positive tests
-def test_addition_positive_1():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.addition(1.0, 1.0)
-    assert response == 2.0
+@pytest.fixture
+def setup_data():
+    json_file = open('../test_data/operator_parser_testing_data.json')
+    json_data = json.load(json_file)
+    yield json_data
+    json_file.close()
 
 
-def test_addition_positive_2():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.addition(234.786, 1222229.0)
-    assert response == 1222463.786
+def test_addition(setup_data):
+    test_runner.test_runner(setup_data, 'addition', operator_parser_class.addition)
 
 
-# subtraction - positive tests
-def test_subtraction_positive_1():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.subtraction(1.0, 1.0)
-    assert response == 0.0
+def test_subtraction(setup_data):
+    test_runner.test_runner(setup_data, 'subtraction', operator_parser_class.subtraction)
 
 
-def test_subtraction_positive_2():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.subtraction(2.345, 10.34)
-    assert response == -7.994999999999999
+def test_multiplication(setup_data):
+    test_runner.test_runner(setup_data, 'multiplication', operator_parser_class.multiplication)
 
 
-# multiplication - positive tests
-def test_multiplication_positive_1():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.multiplication(1.0, 1.0)
-    assert response == 1.0
+def test_division(setup_data):
+    test_runner.test_runner(setup_data, 'division', operator_parser_class.division)
 
 
-def test_multiplication_positive_2():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.multiplication(20, 2)
-    assert response == 40
+def test_exponent(setup_data):
+    test_runner.test_runner(setup_data, 'exponent', operator_parser_class.exponent)
 
-
-# division - positive tests
-def test_divide_positive_1():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.divide(1.0, 1.0)
-    assert response == 1.0
-
-
-def test_divide_positive_2():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.divide(20, 2)
-    assert response == 10
-
-
-# division - positive tests
-def test_exponent_positive_1():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.exponent(1.0, 1.0)
-    assert response == 1.0
-
-
-def test_exponent_positive_2():
-    operator_parser_class = operator_parser.OperatorParser()
-    response = operator_parser_class.exponent(5, 2)
-    assert response == 25
