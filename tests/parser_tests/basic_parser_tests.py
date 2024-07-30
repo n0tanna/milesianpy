@@ -36,3 +36,7 @@ def test_check_if_empty_bracket(setup_data):
 
 def test_standardize_brackets(setup_data):
     test_runner.test_runner(setup_data, 'standardize_brackets', basic_parser_class.standardize_brackets)
+
+
+def test_bracket_multiplication_insertion(setup_data):
+    test_runner.test_runner(setup_data, 'test_bracket_multiplication_insertion', basic_parser_class.bracket_multiplication_insertion)
