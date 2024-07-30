@@ -1,46 +1,22 @@
 import pytest
+import json
 from parsers import number_parser
+from tests import test_runner
+
+number_parser_class = number_parser.NumberParser()
 
 
-# convert_to_nums - positive tests
-def test_convert_to_nums_positive_1():
-    number_parser_class = number_parser.NumberParser()
-    equation = list("4.23+234")
-    response = number_parser_class.convert_to_nums(equation)
-    assert response == [4.23, '+', 234.0]
+@pytest.fixture
+def setup_data():
+    json_file = open('../test_data/number_parser_testing_data.json')
+    json_data = json.load(json_file)
+    yield json_data
+    json_file.close()
 
 
-def test_convert_to_nums_positive_2():
-    number_parser_class = number_parser.NumberParser()
-    equation = list("4.23+234(2.34567/3)")
-    response = number_parser_class.convert_to_nums(equation)
-    assert response == [4.23, '+', 234.0, '(', 2.34567, '/', 3.0, ')']
+def test_convert_to_nums(setup_data):
+    test_runner.test_runner(setup_data, 'convert_to_nums', number_parser_class.convert_to_nums)
 
 
-def test_convert_to_nums_positive_3():
-    number_parser_class = number_parser.NumberParser()
-    equation = list("4.23+234(2.34567/3)^3-5")
-    response = number_parser_class.convert_to_nums(equation)
-    assert response == [4.23, '+', 234.0, '(', 2.34567, '/', 3.0, ')', '^', 3.0, '-', 5.0]
-
-
-# is_negative - positive tests
-def test_is_negative_positive_1():
-    number_parser_class = number_parser.NumberParser()
-    equation = ['(', 4.23, '+', '(', '-', 234.0, ')', ')']
-    response = number_parser_class.is_negative(equation)
-    assert ['(', 4.23, '+', '(', -234.0, ')', ')'] == response
-
-
-def test_is_negative_positive_2():
-    number_parser_class = number_parser.NumberParser()
-    equation = [5.0, '-', '(', '-', 8.0, ')']
-    response = number_parser_class.is_negative(equation)
-    assert [5.0, '-', '(', -8.0, ')'] == response
-
-
-def test_is_negative_positive_3():
-    number_parser_class = number_parser.NumberParser()
-    equation = [5, '-', '(', '(', '-', 8.0, ')', '-', '(', '-', 232.0, ')', ')']
-    response = number_parser_class.is_negative(equation)
-    assert [5, '-', '(', '(', -8.0, ')', '-', '(', -232.0, ')', ')'] == response
+def test_is_negative(setup_data):
+    test_runner.test_runner(setup_data, 'is_negative', number_parser_class.is_negative)
