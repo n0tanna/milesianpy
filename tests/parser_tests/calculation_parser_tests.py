@@ -5,6 +5,7 @@ from tests import test_runner
 
 calculation_parser_class = calculation_parser.CalculationParser()
 
+
 @pytest.fixture
 def setup_data():
     json_file = open('../test_data/calculation_parser_testing_data.json')
