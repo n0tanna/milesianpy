@@ -1,27 +1,27 @@
 class OperatorParser:
     @staticmethod
-    def addition(left_value: float, right_value: float):
-        return left_value + right_value
+    def addition(equation: list):
+        return equation[0] + equation[1]
 
     @staticmethod
-    def subtraction(left_value: float, right_value: float):
-        return left_value - right_value
+    def subtraction(equation: list):
+        return equation[0] - equation[1]
 
     @staticmethod
-    def multiplication(left_value: float, right_value: float):
-        return left_value * right_value
+    def multiplication(equation: list):
+        return equation[0] * equation[1]
 
     @staticmethod
-    def divide(left_value: float, right_value: float):
-        return left_value / right_value
+    def division(equation: list):
+        return equation[0] / equation[1]
 
     @staticmethod
-    def exponent(left_value: float, right_value: float):
+    def exponent(equation: list):
         index = 0
-        outcome = left_value
+        outcome = equation[0]
 
-        while right_value - 1 > index:
-            outcome *= left_value
+        while equation[1] - 1 > index:
+            outcome *= equation[0]
             index += 1
 
         return outcome

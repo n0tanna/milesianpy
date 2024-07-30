@@ -6,6 +6,25 @@ right_bracket = [')', ']', '}']
 
 class BasicParser:
     @staticmethod
+    def bracket_multiplication_insertion(user_input: list):
+        previous_value = ''
+        new_user_input = []
+
+        for x in user_input:
+            if previous_value.isnumeric() and x in left_bracket:
+                new_user_input.append('*')
+                new_user_input.append(x)
+
+            elif previous_value in right_bracket and x.isnumeric():
+                raise Exception("Formatting Error: missing operator.")
+
+            else:
+                previous_value = x
+                new_user_input.append(x)
+
+        return new_user_input
+
+    @staticmethod
     def check_bracket_count(user_input: list):
         left_bracket_count = 0
         right_bracket_count = 0
@@ -75,6 +94,9 @@ class BasicParser:
                     raise Exception("Formatting Error: decimals require numbers on both sides.")
 
                 previous_value = x
+
+        if user_input[len(user_input) - 1] is '.':
+            raise Exception("Formatting Error: decimals require numbers on both sides.")
 
         return True
 

@@ -8,12 +8,16 @@ valid_operators = ['-', '+', '/', '*', '^']
 
 class CalculationParser:
     @staticmethod
-    def no_variable_basic_calculation(user_input: list, has_brackets: bool):
+    def no_variable_basic_calculation(user_input: list):
         number_class = number_parser.NumberParser()
+        basic_class = basic_parser.BasicParser()
+
+        has_brackets = basic_class.check_bracket_count(user_input)
 
         if has_brackets:
             basic_class = basic_parser.BasicParser()
             user_input = basic_class.standardize_brackets(user_input)
+            user_input = basic_class.bracket_multiplication_insertion(user_input)
             user_input = number_class.convert_to_nums(user_input)
 
             right_bracket_index = user_input.index(')')
@@ -83,19 +87,19 @@ class CalculationParser:
         while len(calculate_values) > iterator:
             if calculate_values[iterator] in valid_operators:
                 if calculate_values[iterator] == '+':
-                    calculated_sum = operator.addition(calculated_sum, calculate_values[iterator + 1])
+                    calculated_sum = operator.addition([calculated_sum, calculate_values[iterator + 1]])
 
                 elif calculate_values[iterator] == '-':
-                    calculated_sum = operator.subtraction(calculated_sum, calculate_values[iterator + 1])
+                    calculated_sum = operator.subtraction([calculated_sum, calculate_values[iterator + 1]])
 
                 elif calculate_values[iterator] == '*':
-                    calculated_sum = operator.multiplication(calculated_sum, calculate_values[iterator + 1])
+                    calculated_sum = operator.multiplication([calculated_sum, calculate_values[iterator + 1]])
 
                 elif calculate_values[iterator] == '/':
-                    calculated_sum = operator.divide(calculated_sum, calculate_values[iterator + 1])
+                    calculated_sum = operator.division([calculated_sum, calculate_values[iterator + 1]])
 
                 elif calculate_values[iterator] == '^':
-                    calculated_sum = operator.exponent(calculated_sum, calculate_values[iterator + 1])
+                    calculated_sum = operator.exponent([calculated_sum, calculate_values[iterator + 1]])
 
                 iterator += 1
 
