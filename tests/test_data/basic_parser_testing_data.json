@@ -228,5 +228,35 @@
         "result": ["(", "24324.324", "*", "2", ")", "+", "(", "(", "32.23", ")", ")", "/", "2"]
       }
     }
+  ],
+  "test_bracket_multiplication_insertion": [
+    {
+      "test_data": "2(3+4)",
+      "test_result": {
+        "exception": false,
+        "result": ["2", "*", "(", "3", "+", "4", ")"]
+      }
+    },
+    {
+      "test_data": "2(654(3+4))",
+      "test_result": {
+        "exception": false,
+        "result": ["2", "*", "(", "6", "5", "4", "*", "(", "3", "+", "4", ")", ")"]
+      }
+    },
+    {
+      "test_data": "2(654(3+4)234)",
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: missing operator."
+      }
+    },
+    {
+      "test_data": "(23-43)42",
+      "test_result": {
+        "exception": true,
+        "result": "Formatting Error: missing operator."
+      }
+    }
   ]
 }
