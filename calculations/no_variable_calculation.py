@@ -1,9 +1,7 @@
 from parsers import operator_parser
 from parsers import number_parser
 from parsers import basic_parser
-
-left_bracket_values = ['{', '[', '(']
-valid_operators = ['-', '+', '/', '*', '^']
+import common_operators
 
 
 class NoVariableCalculation:
@@ -85,7 +83,7 @@ class NoVariableCalculation:
         operator = operator_parser.OperatorParser()
 
         while len(calculate_values) > iterator:
-            if calculate_values[iterator] in valid_operators:
+            if calculate_values[iterator] in common_operators.CommonOperators.VALID_OPERATORS.value:
                 if calculate_values[iterator] == '+':
                     calculated_sum = operator.addition([calculated_sum, calculate_values[iterator + 1]])
 

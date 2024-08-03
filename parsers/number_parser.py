@@ -1,9 +1,4 @@
-from decimal import Decimal
-
-valid_characters = ['{', '[', '(', ')', ']', '}', '*', '/', '^', '+', '-', '=']
-valid_operators = ['*', '/', '^', '+', '-', '=']
-left_bracket = ['{', '[', '(']
-right_bracket = [')', ']', '}']
+import common_operators
 
 
 class NumberParser:
@@ -13,7 +8,7 @@ class NumberParser:
         valid_num = ""
 
         for x in user_input:
-            if x in valid_characters:
+            if x in common_operators.CommonOperators.VALID_CHARACTERS_NO_DECIMALS.value:
                 if valid_num:
                     converted_equation.append(float(valid_num))
                     valid_num = ""
