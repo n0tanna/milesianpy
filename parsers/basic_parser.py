@@ -1,7 +1,4 @@
-valid_characters = ['{', '[', '(', ')', ']', '}', '*', '/', '^', '+', '-', '=', '.']
-valid_operators = ['-', '+', '/', '*', '^']
-left_bracket = ['{', '[', '(']
-right_bracket = [')', ']', '}']
+import common_operators
 
 
 class BasicParser:
@@ -11,11 +8,11 @@ class BasicParser:
         new_user_input = []
 
         for x in user_input:
-            if previous_value.isnumeric() and x in left_bracket:
+            if previous_value.isnumeric() and x in common_operators.CommonOperators.LEFT_BRACKET.value:
                 new_user_input.append('*')
                 new_user_input.append(x)
 
-            elif previous_value in right_bracket and x.isnumeric():
+            elif previous_value in common_operators.CommonOperators.RIGHT_BRACKET.value and x.isnumeric():
                 raise Exception("Formatting Error: missing operator.")
 
             else:
@@ -29,10 +26,10 @@ class BasicParser:
         left_bracket_count = 0
         right_bracket_count = 0
 
-        for x in left_bracket:
+        for x in common_operators.CommonOperators.LEFT_BRACKET.value:
             left_bracket_count += user_input.count(x)
 
-        for x in right_bracket:
+        for x in common_operators.CommonOperators.RIGHT_BRACKET.value:
             right_bracket_count += user_input.count(x)
 
         if right_bracket_count != left_bracket_count:
@@ -47,10 +44,10 @@ class BasicParser:
     def check_if_empty_bracket(user_input: list):
         left_value = ''
         for x in user_input:
-            if x in left_bracket:
+            if x in common_operators.CommonOperators.LEFT_BRACKET.value:
                 left_value = x
 
-            elif x in right_bracket and left_value:
+            elif x in common_operators.CommonOperators.RIGHT_BRACKET.value and left_value:
                 raise Exception("Formatting Error: no content in bracket.")
 
             else:
@@ -63,7 +60,7 @@ class BasicParser:
         previous_value = ''
 
         if passed_valid_operators is None:
-            passed_valid_operators = valid_operators
+            passed_valid_operators = common_operators.CommonOperators.VALID_OPERATORS.value
 
         for x in user_input:
             if previous_value is x in passed_valid_operators:
@@ -81,7 +78,7 @@ class BasicParser:
 
         for x in user_input:
             if x is decimal and previous_value is not decimal:
-                if previous_value == '' or previous_value in valid_characters:
+                if previous_value == '' or previous_value in common_operators.CommonOperators.VALID_CHARACTERS.value:
                     raise Exception("Formatting Error: decimals require numbers on both sides.")
 
                 previous_value = decimal
@@ -90,7 +87,7 @@ class BasicParser:
                 raise Exception("Formatting Error: too many decimals for one number.")
 
             else:
-                if previous_value is decimal and x in valid_characters:
+                if previous_value is decimal and x in common_operators.CommonOperators.VALID_CHARACTERS.value:
                     raise Exception("Formatting Error: decimals require numbers on both sides.")
 
                 previous_value = x
@@ -103,7 +100,7 @@ class BasicParser:
     @staticmethod
     def check_values(user_input: list, passed_valid_characters: list = None):
         if passed_valid_characters is None:
-            passed_valid_characters = valid_characters
+            passed_valid_characters = common_operators.CommonOperators.VALID_CHARACTERS.value
 
         for x in user_input:
             if x not in passed_valid_characters and not x.isalnum():
