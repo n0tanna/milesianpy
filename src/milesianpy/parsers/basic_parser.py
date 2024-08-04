@@ -1,4 +1,4 @@
-import common_operators
+import milesianpy.common_operators as common_operators
 
 
 class BasicParser:

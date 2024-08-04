@@ -6,7 +6,7 @@ setup:
 	pip install wheel twine
 
 clean:
-	rm -rf build dist *.egg-info
+	rm -rf build dist src/milesianpy.egg-info
 
 build:
 	python setup.py sdist bdist_wheel

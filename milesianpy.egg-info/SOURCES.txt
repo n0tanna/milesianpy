@@ -1,5 +1,0 @@
-setup.py
-milesianpy.egg-info/PKG-INFO
-milesianpy.egg-info/SOURCES.txt
-milesianpy.egg-info/dependency_links.txt
-milesianpy.egg-info/top_level.txt
