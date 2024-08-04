@@ -1,9 +1,9 @@
 .PHONY: build
 
-all: clean build push clean
+all: build publish clean
 
 setup:
-	pip install wheel twine
+	pip install -U pip build twine
 
 clean:
 	rm -rf build dist milesianpy.egg-info
@@ -11,7 +11,7 @@ clean:
 build:
 	python -m build
 
-push:
+publish:
 	@twine upload --verbose  --skip-existing dist/*
 
 commit:
