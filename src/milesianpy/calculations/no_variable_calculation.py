@@ -1,6 +1,6 @@
-import operator_parser
-import number_parser
-import basic_parser
+import milesianpy.parsers.operator_parser as operator_parser
+import milesianpy.parsers.number_parser as number_parser
+import milesianpy.parsers.basic_parser as basic_parser
 import milesianpy.common_operators as common_operators
 
 

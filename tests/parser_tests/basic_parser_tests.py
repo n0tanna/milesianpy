@@ -1,6 +1,6 @@
 import pytest
 import json
-import basic_parser
+import milesianpy.parsers.basic_parser as basic_parser
 from tests import test_runner
 
 basic_parser_class = basic_parser.BasicParser()

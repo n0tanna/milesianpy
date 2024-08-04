@@ -1,6 +1,6 @@
 import pytest
 import json
-from src.calculations import no_variable_calculation
+from milesianpy.calculations import no_variable_calculation
 from tests import test_runner
 
 no_variable_calculation_class = no_variable_calculation.NoVariableCalculation()

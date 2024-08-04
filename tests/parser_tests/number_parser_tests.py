@@ -1,6 +1,6 @@
 import pytest
 import json
-import number_parser
+import milesianpy.parsers.number_parser as number_parser
 from tests import test_runner
 
 number_parser_class = number_parser.NumberParser()

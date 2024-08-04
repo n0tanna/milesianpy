@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [metadata]
 name = "project"
-version = "0.0.1"
+version = "0.0.8"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -13,7 +13,7 @@ exclude = ["tests*"]
 
 [project]
 name = "milesianpy"
-version = "0.0.1"
+version = "0.0.8"
 authors = [
   { name="Anna St. Germain", email="anna.stgermain885@gmail.com" },
 ]
