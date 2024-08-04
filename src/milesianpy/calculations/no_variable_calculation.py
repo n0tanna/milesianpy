@@ -1,7 +1,7 @@
-from parsers import operator_parser
-from parsers import number_parser
-from parsers import basic_parser
-import common_operators
+import milesianpy.parsers.operator_parser as operator_parser
+import milesianpy.parsers.number_parser as number_parser
+import milesianpy.parsers.basic_parser as basic_parser
+import milesianpy.common_operators as common_operators
 
 
 class NoVariableCalculation:

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[metadata]
+name = "project"
+version = "0.0.8"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["*"]
+exclude = ["tests*"]
+
+[project]
+name = "milesianpy"
+version = "0.0.8"
+authors = [
+  { name="Anna St. Germain", email="anna.stgermain885@gmail.com" },
+]
+description = "A math calculation package."
+readme = "readme.md"
+requires-python = ">=3.8"

@@ -1,6 +1,6 @@
 import pytest
 import json
-from parsers import operator_parser
+import milesianpy.parsers.operator_parser as operator_parser
 from tests import test_runner
 
 operator_parser_class = operator_parser.OperatorParser()
