@@ -18,5 +18,5 @@ authors = [
   { name="Anna St. Germain", email="anna.stgermain885@gmail.com" },
 ]
 description = "A math calculation package."
-readme = "README.md"
+readme = "readme.md"
 requires-python = ">=3.8"
