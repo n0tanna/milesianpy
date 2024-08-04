@@ -1,6 +1,6 @@
-from parsers import operator_parser
-from parsers import number_parser
-from parsers import basic_parser
+import operator_parser
+import number_parser
+import basic_parser
 import common_operators
 
 
