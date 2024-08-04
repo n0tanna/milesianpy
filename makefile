@@ -12,7 +12,7 @@ build:
 	python setup.py sdist bdist_wheel
 
 push:
-	@twine upload --repository mlfabric --verbose  --skip-existing dist/*
+	@twine upload --verbose  --skip-existing dist/*
 
 commit:
 	git commit -am "$(MESSAGE)"
