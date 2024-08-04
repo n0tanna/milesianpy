@@ -1,5 +1,7 @@
 # milesianpy
 
+![alt text](docs/logo.png)
+
 A math calculation package.
 
 ## Usage
