@@ -6,10 +6,10 @@ setup:
 	pip install wheel twine
 
 clean:
-	rm -rf build dist src/milesianpy.egg-info
+	rm -rf build dist milesianpy.egg-info
 
 build:
-	python setup.py sdist bdist_wheel
+	python -m build
 
 push:
 	@twine upload --verbose  --skip-existing dist/*
