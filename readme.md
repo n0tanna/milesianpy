@@ -1,8 +1,6 @@
-# milesianpy
+![alt text](docs/Logo.png)
 
-![alt text](docs/logo.png)
-
-A math calculation package.
+Math right at your finger-tips.
 
 ## Usage
 
@@ -14,11 +12,7 @@ A math calculation package.
 - `number_parser`: A parser that can parse numbers.
 - `operator_parser`: A parser that can parse operators.
 
-```python
-from milesianpy.parsers import basic_parser
-
-// TODO: add examples here.
-```
+## [Documentation](https://milesianpy-docs.com/)
 
 ## Installation
 
