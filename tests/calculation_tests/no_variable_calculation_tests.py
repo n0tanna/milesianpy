@@ -14,7 +14,7 @@ def setup_data():
     json_file.close()
 
 
-def test_convert_to_nums(setup_data):
+def test_no_variable_calculation(setup_data):
     test_runner.test_runner(setup_data, 'no_variable_basic_calculation', no_variable_calculation_class.no_variable_basic_calculation)
 
 

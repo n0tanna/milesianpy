@@ -13,7 +13,6 @@ class NoVariableCalculation:
         has_brackets = basic_class.check_bracket_count(user_input)
 
         if has_brackets:
-            basic_class = basic_parser.BasicParser()
             user_input = basic_class.standardize_brackets(user_input)
             user_input = basic_class.bracket_multiplication_insertion(user_input)
             user_input = number_class.convert_to_nums(user_input)

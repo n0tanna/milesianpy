@@ -225,6 +225,13 @@
         "exception": true,
         "result": "Invalid character: @."
       }
+    },
+    {
+      "test_data": "[#+24324.324*2@@@#$%]+{(32.23)}/2}",
+      "test_result": {
+        "exception": true,
+        "result": "Invalid character: #."
+      }
     }
   ],
   "standardize_brackets": [
