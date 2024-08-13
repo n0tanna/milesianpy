@@ -13,7 +13,6 @@ class NoVariableCalculation:
         has_brackets = basic_class.check_bracket_count(user_input)
 
         if has_brackets:
-            basic_class = basic_parser.BasicParser()
             user_input = basic_class.standardize_brackets(user_input)
             user_input = basic_class.bracket_multiplication_insertion(user_input)
             user_input = number_class.convert_to_nums(user_input)
@@ -30,7 +29,7 @@ class NoVariableCalculation:
 
         else:
             user_input = number_class.convert_to_nums(user_input)
-            response = NoVariableCalculation.calculate_values(user_input)
+            response = NoVariableCalculation.no_brackets_bedmas(user_input)
 
         return response
 
@@ -105,6 +104,35 @@ class NoVariableCalculation:
                 iterator += 1
 
         return calculated_sum
+
+    @classmethod
+    def no_brackets_bedmas(cls, user_input: list):
+        while True:
+            index = 0
+            if '^' in user_input:
+                index = user_input.index('^')
+
+            elif '/' in user_input:
+                index = user_input.index('/')
+
+            elif '*' in user_input:
+                index = user_input.index('*')
+
+            elif '+' in user_input:
+                index = user_input.index('+')
+
+            elif '-' in user_input:
+                index = user_input.index('-')
+
+            else:
+                break
+
+            result = NoVariableCalculation.calculate_values(
+                [user_input[index - 1], user_input[index], user_input[index + 1]])
+            user_input[index + 1] = result
+            del user_input[index - 1: index + 1]
+
+        return user_input[0]
 
     @classmethod
     def bracket_recursion(cls, user_input: list):

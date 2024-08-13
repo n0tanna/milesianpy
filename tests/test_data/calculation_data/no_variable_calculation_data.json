@@ -111,6 +111,27 @@
         "exception": false,
         "result": 16.0
       }
+    },
+    {
+      "test_data": ["2", "+", "4", "/", "2"],
+      "test_result": {
+        "exception": false,
+        "result": 4.0
+      }
+    },
+    {
+      "test_data": ["2", "^", "4", "/", "2"],
+      "test_result": {
+        "exception": false,
+        "result": 8.0
+      }
+    },
+    {
+      "test_data": ["2", "*", "4", "/", "2"],
+      "test_result": {
+        "exception": false,
+        "result": 4.0
+      }
     }
   ]
 }
