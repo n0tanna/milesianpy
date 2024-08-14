@@ -128,3 +128,19 @@ class BasicParser:
         user_input = list(map(lambda x: x.replace(']', ')'), user_input))
 
         return user_input
+
+    @staticmethod
+    def has_variables(user_input: list):
+        variable_list = []
+        for x in user_input:
+            if x.isalpha():
+                if x not in variable_list:
+                    variable_list.append(x)
+
+        if len(variable_list) == 0:
+            return 0
+
+        else:
+            return variable_list
+
+

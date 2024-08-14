@@ -1,7 +1,6 @@
-import milesianpy.parsers.operator_parser as operator_parser
 import milesianpy.parsers.number_parser as number_parser
 import milesianpy.parsers.basic_parser as basic_parser
-import milesianpy.common_operators as common_operators
+import milesianpy.calculations.common_functions as common_functions
 
 
 class NoVariableCalculation:
@@ -9,6 +8,7 @@ class NoVariableCalculation:
     def no_variable_basic_calculation(user_input: list):
         number_class = number_parser.NumberParser()
         basic_class = basic_parser.BasicParser()
+        common_class = common_functions.CommonFunctions()
 
         has_brackets = basic_class.check_bracket_count(user_input)
 
@@ -18,136 +18,18 @@ class NoVariableCalculation:
             user_input = number_class.convert_to_nums(user_input)
 
             right_bracket_index = user_input.index(')')
-            left_bracket_index = NoVariableCalculation.final_instance(user_input, '(')
+            left_bracket_index = common_class.final_instance(user_input, '(')
 
             if right_bracket_index < left_bracket_index:
-                response = NoVariableCalculation.multiple_nested_brackets(user_input)
+                response = common_class.multiple_nested_brackets(user_input)
 
             else:
-                response = NoVariableCalculation.singular_nested_brackets(user_input)
-                response = NoVariableCalculation.calculate_values(user_input)
+                response = common_class.singular_nested_brackets(user_input)
+                response = common_class.calculate_values(user_input)
 
         else:
             user_input = number_class.convert_to_nums(user_input)
-            response = NoVariableCalculation.no_brackets_bedmas(user_input)
+            response = common_class.no_brackets_bedmas(user_input)
 
         return response
 
-    @classmethod
-    def multiple_nested_brackets(cls, user_input: list):
-        left_bracket_count = user_input.count('(')
-
-        while left_bracket_count > 0:
-            right_bracket_index = user_input.index(')')
-
-            spliced_list = user_input[:right_bracket_index + 1]
-            left_bracket_index = NoVariableCalculation.final_instance(spliced_list, '(')
-            spliced_list = spliced_list[left_bracket_index:]
-
-            calculated_value = NoVariableCalculation.singular_nested_brackets(spliced_list)
-            user_input[right_bracket_index] = calculated_value
-            del user_input[left_bracket_index: right_bracket_index]
-            left_bracket_count = user_input.count('(')
-
-        user_input = NoVariableCalculation.calculate_values(user_input)
-        return user_input
-
-    @classmethod
-    def singular_nested_brackets(cls, user_input: list):
-        left_bracket_count = user_input.count('(')
-        calculated_value = 0
-
-        while left_bracket_count > 0:
-            holder = NoVariableCalculation.bracket_recursion(user_input)
-            left_bracket_count_holder = holder.count('(')
-
-            if left_bracket_count_holder == 0:
-                calculated_value = NoVariableCalculation.calculate_values(holder)
-
-                left_value = NoVariableCalculation.final_instance(user_input, '(')
-
-                right_value = user_input.index(')')
-
-                del user_input[left_value + 1:right_value + 1]
-                user_input[left_value] = calculated_value
-
-            left_bracket_count = user_input.count('(')
-
-        return calculated_value
-
-    @classmethod
-    def calculate_values(cls, calculate_values: list):
-        iterator = 0
-        calculated_sum = calculate_values[0]
-        operator = operator_parser.OperatorParser()
-
-        while len(calculate_values) > iterator:
-            if calculate_values[iterator] in common_operators.CommonOperators.VALID_OPERATORS.value:
-                if calculate_values[iterator] == '+':
-                    calculated_sum = operator.addition([calculated_sum, calculate_values[iterator + 1]])
-
-                elif calculate_values[iterator] == '-':
-                    calculated_sum = operator.subtraction([calculated_sum, calculate_values[iterator + 1]])
-
-                elif calculate_values[iterator] == '*':
-                    calculated_sum = operator.multiplication([calculated_sum, calculate_values[iterator + 1]])
-
-                elif calculate_values[iterator] == '/':
-                    calculated_sum = operator.division([calculated_sum, calculate_values[iterator + 1]])
-
-                elif calculate_values[iterator] == '^':
-                    calculated_sum = operator.exponent([calculated_sum, calculate_values[iterator + 1]])
-
-                iterator += 1
-
-            else:
-                iterator += 1
-
-        return calculated_sum
-
-    @classmethod
-    def no_brackets_bedmas(cls, user_input: list):
-        while True:
-            index = 0
-            if '^' in user_input:
-                index = user_input.index('^')
-
-            elif '/' in user_input:
-                index = user_input.index('/')
-
-            elif '*' in user_input:
-                index = user_input.index('*')
-
-            elif '+' in user_input:
-                index = user_input.index('+')
-
-            elif '-' in user_input:
-                index = user_input.index('-')
-
-            else:
-                break
-
-            result = NoVariableCalculation.calculate_values(
-                [user_input[index - 1], user_input[index], user_input[index + 1]])
-            user_input[index + 1] = result
-            del user_input[index - 1: index + 1]
-
-        return user_input[0]
-
-    @classmethod
-    def bracket_recursion(cls, user_input: list):
-        index = NoVariableCalculation.final_instance(user_input, '(')
-        left_bracket_index = index
-        right_bracket_index = user_input.index(')')
-
-        return user_input[left_bracket_index + 1: right_bracket_index]
-
-    @classmethod
-    def final_instance(cls, passed_list: list, value: str):
-        index = 0
-        for i in range(len(passed_list) - 1, 0, -1):
-            if passed_list[i] == value:
-                index = i
-                break
-
-        return index

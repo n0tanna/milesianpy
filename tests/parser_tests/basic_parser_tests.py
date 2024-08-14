@@ -39,4 +39,8 @@ def test_standardize_brackets(setup_data):
 
 
 def test_bracket_multiplication_insertion(setup_data):
-    test_runner.test_runner(setup_data, 'test_bracket_multiplication_insertion', basic_parser_class.bracket_multiplication_insertion)
+    test_runner.test_runner(setup_data, 'bracket_multiplication_insertion', basic_parser_class.bracket_multiplication_insertion)
+
+
+def test_has_variable(setup_data):
+    test_runner.test_runner(setup_data, 'has_variables', basic_parser_class.has_variables)
