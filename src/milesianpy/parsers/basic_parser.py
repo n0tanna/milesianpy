@@ -143,4 +143,24 @@ class BasicParser:
         else:
             return variable_list
 
+    @staticmethod
+    def has_equals_sign(user_input: list):
+        has_equals = False
+        right_side = []
+        left_side = []
+        for x in user_input:
+            if x == '=':
+                has_equals = True
+
+            else:
+                if has_equals is True:
+                    right_side.append(x)
+
+                else:
+                    left_side.append(x)
+
+        return [left_side, right_side]
+
+
+
 

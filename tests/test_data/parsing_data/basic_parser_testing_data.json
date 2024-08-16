@@ -302,5 +302,14 @@
         "result": ["x", "y"]
       }
     }
+  ],
+  "has_equals_sign": [
+    {
+      "test_data": "3+4=2.3+4",
+      "test_result": {
+        "exception": false,
+        "result": [["3", "+", "4"],["2", ".", "3", "+", "4"]]
+      }
+    }
   ]
 }
