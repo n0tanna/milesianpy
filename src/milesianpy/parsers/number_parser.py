@@ -21,6 +21,9 @@ class NumberParser:
             elif x == ".":
                 valid_num += x
 
+            elif x.isalpha():
+                converted_equation.append(x)
+
         if valid_num:
             converted_equation.append(float(valid_num))
 

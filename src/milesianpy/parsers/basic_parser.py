@@ -7,7 +7,7 @@ import milesianpy.error_handling.invalid_character_error as invalid_character_er
 
 class BasicParser:
     @staticmethod
-    def bracket_multiplication_insertion(user_input: list):
+    def multiplication_insertion(user_input: list):
         previous_value = ''
         new_user_input = []
         operator_error_class = operator_error.OperatorError
@@ -17,7 +17,11 @@ class BasicParser:
                 new_user_input.append('*')
                 new_user_input.append(x)
 
-            elif previous_value in common_operators.CommonOperators.RIGHT_BRACKET.value and x.isnumeric():
+            elif previous_value.isnumeric() and x.isalpha():
+                new_user_input.append('*')
+                new_user_input.append(x)
+
+            elif previous_value in common_operators.CommonOperators.RIGHT_BRACKET.value and x.isalnum():
                 raise operator_error_class("Missing operator.")
 
             else:
@@ -128,3 +132,8 @@ class BasicParser:
         user_input = list(map(lambda x: x.replace(']', ')'), user_input))
 
         return user_input
+
+
+
+
+

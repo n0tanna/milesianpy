@@ -1,0 +1,11 @@
+{
+  "single_variable_calculation": [
+    {
+      "test_data": [["(", "4", ".", "2", "3", "+", "2", "3", "4", "x", ")", "+", "2", "=", "2", "x", "+", "4"]],
+      "test_result": {
+        "exception": false,
+        "result": 238.23
+      }
+    }
+  ]
+}

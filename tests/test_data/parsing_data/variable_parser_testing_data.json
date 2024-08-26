@@ -1,0 +1,59 @@
+{
+  "has_variables": [
+    {
+      "test_data": ["23+4"],
+      "test_result": {
+        "exception": false,
+        "result": 0
+      }
+    },
+    {
+      "test_data": ["23+4+x"],
+      "test_result": {
+        "exception": false,
+        "result": ["x"]
+      }
+    },
+    {
+      "test_data": ["23+4+x+x"],
+      "test_result": {
+        "exception": false,
+        "result": ["x"]
+      }
+    },
+    {
+      "test_data": ["23+4+(x+y)"],
+      "test_result": {
+        "exception": false,
+        "result": ["x", "y"]
+      }
+    },
+    {
+      "test_data": ["23+b+4+(x+a)"],
+      "test_result": {
+        "exception": false,
+        "result": [
+          "a",
+          "b",
+          "x"
+        ]
+      }
+    }
+  ],
+  "has_equals_sign": [
+    {
+      "test_data": ["3+4=2.3+4"],
+      "test_result": {
+        "exception": false,
+        "result": [["3", "+", "4"],["2", ".", "3", "+", "4"]]
+      }
+    },
+    {
+      "test_data": ["3+4-2.3+4"],
+      "test_result": {
+        "exception": false,
+        "result": [["3", "+", "4", "-", "2", ".", "3", "+", "4"], []]
+      }
+    }
+  ]
+}
