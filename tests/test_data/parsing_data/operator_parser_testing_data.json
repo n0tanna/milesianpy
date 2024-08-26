@@ -1,14 +1,14 @@
 {
   "addition": [
     {
-      "test_data": [2.0, 2.0],
+      "test_data": [[2.0, 2.0]],
       "test_result": {
         "exception": false,
         "result": 4.0
       }
     },
     {
-      "test_data": [400.0, 12.3333],
+      "test_data": [[400.0, 12.3333]],
       "test_result": {
         "exception": false,
         "result": 412.3333
@@ -17,21 +17,21 @@
   ],
   "subtraction": [
     {
-      "test_data": [2.0, 2.0],
+      "test_data": [[2.0, 2.0]],
       "test_result": {
         "exception": false,
         "result": 0.0
       }
     },
     {
-      "test_data": [400.0, 100.0],
+      "test_data": [[400.0, 100.0]],
       "test_result": {
         "exception": false,
         "result": 300.00
       }
     },
     {
-      "test_data": [56.77, 32.4],
+      "test_data": [[56.77, 32.4]],
       "test_result": {
         "exception": false,
         "result": 24.370000000000005
@@ -40,21 +40,21 @@
   ],
   "multiplication": [
     {
-      "test_data": [2.0, 2.0],
+      "test_data": [[2.0, 2.0]],
       "test_result": {
         "exception": false,
         "result": 4.0
       }
     },
     {
-      "test_data": [200.0, 2.0],
+      "test_data": [[200.0, 2.0]],
       "test_result": {
         "exception": false,
         "result": 400.0
       }
     },
     {
-      "test_data": [8.3, 2.5],
+      "test_data": [[8.3, 2.5]],
       "test_result": {
         "exception": false,
         "result": 20.75
@@ -63,21 +63,21 @@
   ],
   "division": [
     {
-      "test_data": [2.0, 2.0],
+      "test_data": [[2.0, 2.0]],
       "test_result": {
         "exception": false,
         "result": 1.0
       }
     },
     {
-      "test_data": [200.0, 2.0],
+      "test_data": [[200.0, 2.0]],
       "test_result": {
         "exception": false,
         "result": 100.0
       }
     },
     {
-      "test_data": [6.5, 2],
+      "test_data": [[6.5, 2]],
       "test_result": {
         "exception": false,
         "result": 3.25
@@ -86,14 +86,14 @@
   ],
   "exponent": [
     {
-      "test_data": [6, 2],
+      "test_data": [[6, 2]],
       "test_result": {
         "exception": false,
         "result": 36.0
       }
     },
     {
-      "test_data": [3, 10],
+      "test_data": [[3, 10]],
       "test_result": {
         "exception": false,
         "result": 59049.0

@@ -5,7 +5,7 @@ import milesianpy.calculations.common_functions as common_functions
 
 class NoVariableCalculation:
     @staticmethod
-    def no_variable_basic_calculation(user_input: list):
+    def no_variable_calculation(user_input: list):
         number_class = number_parser.NumberParser()
         basic_class = basic_parser.BasicParser()
         common_class = common_functions.CommonFunctions()
@@ -14,7 +14,7 @@ class NoVariableCalculation:
 
         if has_brackets:
             user_input = basic_class.standardize_brackets(user_input)
-            user_input = basic_class.bracket_multiplication_insertion(user_input)
+            user_input = basic_class.multiplication_insertion(user_input)
             user_input = number_class.convert_to_nums(user_input)
 
             right_bracket_index = user_input.index(')')
